@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/windows/nanoserver:1809 as sgx_dcap_nanoserver
+FROM mcr.microsoft.com/windows/lts-nanoserver-1809 as sgx_dcap_nanoserver
 
 LABEL version     = "0.1"
 LABEL description = "This image provides Openenclave SGX run-time"
@@ -28,5 +28,5 @@ RUN curl.exe -O http://download.windowsupdate.com/c/msdownload/update/driver/drv
 && expand /R %DCAP_CAB% /F:License.txt c:/ \
 && expand /R %DCAP_CAB% /F:ThirdPartyLicenses.txt c:/ \
 && del /q %DCAP_CAB%
- 
+
 USER OEUser
