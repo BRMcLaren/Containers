@@ -1,3 +1,4 @@
+# Use server core instead of nano because installing powershell is hard..
 FROM mcr.microsoft.com/windows/servercore:ltsc2019 as sgx_dcap_nanoserver
 
 LABEL version     = "0.1"
@@ -28,5 +29,17 @@ RUN curl.exe -O http://download.windowsupdate.com/c/msdownload/update/driver/drv
 && expand /R %DCAP_CAB% /F:License.txt c:/ \
 && expand /R %DCAP_CAB% /F:ThirdPartyLicenses.txt c:/ \
 && del /q %DCAP_CAB%
- 
+
+COPY install.* C:\
+
+RUN C:\install.cmd
+
+RUN del C:\install.*
+
+COPY build.* C:\
+COPY cleanup.* C:\
+
+RUN build.cmd
+RUN cleanup.cmd
+
 USER OEUser
