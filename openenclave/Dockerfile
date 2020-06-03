@@ -4,10 +4,10 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2019
 COPY install.* C://
 RUN C://install.cmd
 
-#RUN del C:\install.*
+RUN del C://install.*
 
-#COPY build.* C:\
-#COPY cleanup.* C:\
+COPY build.* C://
+COPY cleanup.* C://
 
-#RUN build.cmd
-#RUN cleanup.cmd
+RUN build.cmd
+RUN cleanup.cmd
