@@ -31,8 +31,8 @@ RUN curl.exe -O http://download.windowsupdate.com/c/msdownload/update/driver/drv
 && del /q %DCAP_CAB%
 
 
-COPY install.* C://
-RUN C://install.cmd
+COPY install.* .
+RUN install.cmd
 
 COPY build.* C://
 COPY cleanup.* C://
