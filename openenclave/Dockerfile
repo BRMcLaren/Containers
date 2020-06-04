@@ -1,12 +1,12 @@
 # Use server core instead of nano because installing powershell is hard..
 FROM mcr.microsoft.com/windows/servercore:ltsc2019 as sgx_dcap_nanoserver
- 
+
 LABEL vendor      = "Intel Inc."
 LABEL version     = "2.7"
 LABEL description = "This image provides Intel SGX run-time and DCAP Quote Generation for nanoserver"
- 
+
 WORKDIR /
-USER Administrator
+COPY "." .
 
 #CAB File for the Windows Server 2019 Installation of the PSW on Windows Update
 ENV PSW_CAB 48e7c1e9-6de8-46ee-8ff9-46aa7b7ee5b9_ab5277f79b04b450e6e7c3a624d99c1b1722e6f2.cab
