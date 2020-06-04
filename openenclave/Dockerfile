@@ -19,16 +19,14 @@ ENV DCAP_CAB 4f1f1691-c4b8-422c-9ca9-d22ebee726cc_a95a9c0e06caed691d2cbecae41bb0
  
 RUN curl.exe -O http://download.windowsupdate.com/c/msdownload/update/driver/drvs/2020/05/%PSW_CAB% \
 && expand.exe /R %PSW_CAB% /F:sgx_urts.dll c:\windows\system32 \
-&& expand /R %PSW_CAB% /F:sgx_enclave_common.dll c:\Windows\System32 \
-&& expand /R %PSW_CAB% /F:sgx_uae_service.dll c:\Windows\System32 \
+&& expand /R %PSW_CAB% /F:*.dll c:\Windows\System32 \
 && expand /R %PSW_CAB% /F:third_party.rtf c:/ \
 && del /q %PSW_CAB% \
 && curl.exe -O http://download.windowsupdate.com/c/msdownload/update/driver/drvs/2020/05/%DCAP_CAB% \
-&& expand /R %DCAP_CAB% /F:sgx_dcap_ql.dll c:\Windows\System32 \
-&& expand /R %DCAP_CAB% /F:pce.signed.dll c:\Windows\System32 \
-&& expand /R %DCAP_CAB% /F:qe3.signed.dll c:\Windows\System32 \
+&& expand /R %DCAP_CAB% /F:*.dll c:\Windows\System32 \
 && expand /R %DCAP_CAB% /F:License.txt c:/ \
 && expand /R %DCAP_CAB% /F:ThirdPartyLicenses.txt c:/ \
 && del /q %DCAP_CAB%
 
 RUN install.cmd
+RUN test.cmd
