@@ -29,4 +29,3 @@ RUN curl.exe -O http://download.windowsupdate.com/c/msdownload/update/driver/drv
 && del /q %DCAP_CAB%
 
 RUN install.cmd
-RUN test.cmd
