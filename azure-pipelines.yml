@@ -19,3 +19,7 @@ stages:
     displayName: Build
     pool:
       vmImage: 'windows-2019'
+    
+    container: brmclare/oesdk-windows2019-sgx:510
+    steps:
+    - script: write-host "hello"
