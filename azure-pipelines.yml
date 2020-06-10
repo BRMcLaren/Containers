@@ -18,7 +18,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: 'windows-2019'
+      name: BrettTest
     
     container: 
       image: brmclare/oesdk-windows2019-sgx:510
