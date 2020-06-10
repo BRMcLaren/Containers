@@ -12,7 +12,7 @@ variables:
   tag: '$(Build.BuildId)'
 
 stages:
-- stage: Build
+- stage: Build Docker Image
   displayName: Build image
   jobs:  
   - job: Build
@@ -28,3 +28,18 @@ stages:
         Dockerfile: '*openenclave/Dockerfile'
         tags: |
           $(Build.BuildId)
+
+- stage: Build OE
+  displayName: Build OE
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      name: BrettTest
+    
+    container: 
+      image: brmclare/oesdk-windows2019-sgx:$(Build.BuildId)
+      options: -it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"
+
+    steps:
+      - script: mkdir temp && cd temp && git clone https://github.com/openenclave/openenclave.git && cd openenclave && git checkout v0.9.x && mkdir out && cd out && mkdir x64-Debug && cd x64-Debug && vcvars64.bat &&cmake -G Ninja -DLVI_MITIGATION=ControlFlow -DNUGET_PACKAGE_PATH=C:\Downloads\prereqs\nuget -DCMAKE_INSTALL_PREFIX=C:/openenclave ../.. && ninja && ctest
