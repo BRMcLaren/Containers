@@ -23,6 +23,6 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'brmclareDockerHub'
-        repository: 'oesdk-windows2019-sgx'
+        repository: 'brmclare/oesdk-windows2019-sgx'
         command: 'buildAndPush'
         Dockerfile: '*openenclave/Dockerfile'
