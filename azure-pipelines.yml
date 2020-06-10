@@ -12,11 +12,11 @@ variables:
   tag: '$(Build.BuildId)'
 
 stages:
-- stage: Build Docker Image
-  displayName: Build image
+- stage: Build
+  displayName: Build
   jobs:  
   - job: Build
-    displayName: Build
+    displayName: Build Image
     pool:
       vmImage: 'windows-2019'
     steps:
@@ -28,12 +28,8 @@ stages:
         Dockerfile: '*openenclave/Dockerfile'
         tags: |
           $(Build.BuildId)
-
-- stage: Build OE
-  displayName: Build OE
-  jobs:  
-  - job: Build
-    displayName: Build
+  - job: Build2
+    displayName: Build OE
     pool:
       name: BrettTest
     
