@@ -15,7 +15,7 @@ stages:
 - stage: Build
   displayName: Build
   jobs:  
-  - job: Build
+  - job: Image
     displayName: Build Image
     pool:
       vmImage: 'windows-2019'
@@ -33,6 +33,7 @@ stages:
         targetType: 'inline'
         script: 'New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\sgx_lc_msr\Parameters" -Name "SGX_Launch_Config_Optin" -Value 1 -PropertyType DWORD -Force'
   - job: Build2
+    dependsOn: Image
     displayName: Build OE
     pool:
       name: BrettTest
