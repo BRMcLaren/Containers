@@ -1,0 +1,30 @@
+# Docker
+# Build a Docker image 
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build
+  jobs:  
+  - job: Build
+    displayName: Build Image
+    pool:
+      vmImage: 'windows-2019'
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'brmclareDockerHub'
+        repository: 'brmclare/oesdk-windows2019-sgx-dev'
+        command: 'buildAndPush'
+        Dockerfile: '*openenclave/Dockerfile'
+        tags: |
+          $(Build.BuildId)
