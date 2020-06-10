@@ -28,10 +28,6 @@ stages:
         Dockerfile: 'openenclave-sdk\windows-2019\Dockerfile'
         tags: |
           $(Build.BuildId)
-    - task: PowerShell@2
-      inputs:
-        targetType: 'inline'
-        script: 'New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\sgx_lc_msr\Parameters" -Name "SGX_Launch_Config_Optin" -Value 1 -PropertyType DWORD -Force'
   - job: Build2
     dependsOn: Image
     displayName: Build OE
