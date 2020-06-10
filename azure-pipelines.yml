@@ -19,16 +19,3 @@ stages:
     displayName: Build
     pool:
       vmImage: 'windows-2019'
-- task: AzureCLI@2
-  inputs:
-    scriptLocation: 'scriptPath'
-    scriptPath: 
-    failOnStandardError: true
-    steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/openenclave/Dockerfile'
-        tags: |
-          $(tag)
