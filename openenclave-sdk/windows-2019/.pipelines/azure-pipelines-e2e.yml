@@ -35,7 +35,7 @@ stages:
       name: BrettTest
     
     container: 
-      image: brmclare/oesdk-windows2019-sgx:$(Build.BuildId)
+      image: brmclare/oesdk-windows2019-sgx-dev:$(Build.BuildId)
       options: -it --device="class/17eaf82e-e167-4763-b569-5b8273cef6e1"
 
     steps:
